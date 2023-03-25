@@ -1,4 +1,19 @@
-const gameBoard = document.querySelector('.game-board')
+const gameBoard = document.querySelector('.game-board');
+const gameCells = document.querySelectorAll('[data-cell]');
+
+const X_CLASS = 'x';
+const O_CLASS = 'o';
+
+gameCells.forEach(cell => {
+    addEventListener('click', handleClick, {once: true})
+
+})
+
+function handleClick(e) {
+    const cell = e.target;
+    cell.textContent = 'x';
+
+}
 
 let gameArray = [];
 
