@@ -4,14 +4,25 @@ const gameCells = document.querySelectorAll('[data-cell]');
 const X_CLASS = 'x';
 const O_CLASS = 'o';
 
+let playerTurn = 'x';
+
 gameCells.forEach(cell => {
     cell.addEventListener('click', handleClick)
 })
 
 function handleClick(e) {
     const gameCell = e.target;
-    gameCell.textContent = 'x';
+    gameCell.textContent = playerTurn;
+    changeTurn();
 
+}
+
+function changeTurn() {
+    if (playerTurn == 'x') {
+        playerTurn = 'o';
+    } else {
+        playerTurn = 'x';
+    }
 }
 
 let gameArray = [];
