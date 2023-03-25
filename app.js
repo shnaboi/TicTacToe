@@ -5,13 +5,12 @@ const X_CLASS = 'x';
 const O_CLASS = 'o';
 
 gameCells.forEach(cell => {
-    addEventListener('click', handleClick, {once: true})
-
+    cell.addEventListener('click', handleClick)
 })
 
 function handleClick(e) {
-    const cell = e.target;
-    cell.textContent = 'x';
+    const gameCell = e.target;
+    gameCell.textContent = 'x';
 
 }
 
