@@ -4,7 +4,7 @@
 
 :root {
     --cell-size: 100px;
-    --mark-size: cal(var(--cell-size) * .9);
+    --mark-size: calc(var(--cell-size) * .9);
     --background-color: rgb(70, 144, 255);
 }
 
@@ -40,11 +40,18 @@
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
-    background-color: grey;
+    /* background-color: grey; */
     border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cell:hover {
+    box-shadow: inset 0 0 4px 4px rgb(0, 0, 0, .69);
 }
 
 .cell:first-child,

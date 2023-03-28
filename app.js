@@ -15,7 +15,7 @@ gameCells.forEach(cell => {
 function handleClick(e) {
     const gameCell = e.target;
     const playerTurn = xTurn ? X_CLASS : O_CLASS;
-    gameCell.textContent = playerTurn;
+    gameCell.style.backgroundImage = `url(images/${playerTurn}.svg)`;
     checkWin();
     changeTurn();
     console.log(gameArray[0].textContent)
