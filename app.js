@@ -4,31 +4,33 @@ const gameCells = document.querySelectorAll('[data-cell]');
 const X_CLASS = 'x';
 const O_CLASS = 'o';
 
-let playerTurn = 'x';
+let xTurn = true;
+let gameArray = Array.from(gameCells);
+
 
 gameCells.forEach(cell => {
-    cell.addEventListener('click', handleClick)
+    cell.addEventListener('click', handleClick, {once: true})
 })
 
 function handleClick(e) {
     const gameCell = e.target;
+    const playerTurn = xTurn ? X_CLASS : O_CLASS;
     gameCell.textContent = playerTurn;
+    checkWin();
     changeTurn();
-
+    console.log(gameArray[0].textContent)
 }
 
 function changeTurn() {
-    if (playerTurn == 'x') {
-        playerTurn = 'o';
-    } else {
-        playerTurn = 'x';
-    }
+    xTurn = !xTurn;
 }
 
-let gameArray = [];
+function checkWin() {
+    return;
+}
 
-
-
+// POSSIBLE WIN COMBOS
+// [1,2,3] [1,4,7] [1,5,9] [2,5,8] [3,5,7] [3,6,9] [4,5,6] [7,8,9]
 
 
 
