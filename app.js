@@ -1,5 +1,6 @@
 const gameBoard = document.querySelector('.game-board');
 const gameCells = document.querySelectorAll('[data-cell]');
+// gameBoard.classList.add(X_CLASS);
 
 const X_CLASS = 'x';
 const O_CLASS = 'o';
@@ -18,11 +19,17 @@ function handleClick(e) {
     gameCell.style.backgroundImage = `url(images/${playerTurn}.svg)`;
     checkWin();
     changeTurn();
-    console.log(gameArray[0].textContent)
+    setBoardHover();
 }
 
 function changeTurn() {
     xTurn = !xTurn;
+}
+
+function setBoardHover() {
+    gameBoard.classList.remove(X_CLASS);
+    gameBoard.classList.remove(O_CLASS);
+    gameBoard.classList.add(X_CLASS);
 }
 
 function checkWin() {

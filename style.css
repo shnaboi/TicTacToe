@@ -50,9 +50,7 @@
     background-position: center;
 }
 
-.cell:hover {
-    box-shadow: inset 0 0 4px 4px rgb(0, 0, 0, .69);
-}
+/* MAKE TIC TAC TOE BOARD */
 
 .cell:first-child,
 .cell:nth-child(2),
@@ -72,4 +70,15 @@
 
 .cell:nth-child(3n + 1) {
     border-left: none;
+}
+
+/* HOVER STYLES */
+
+.cell:hover {
+    box-shadow: inset 0 0 4px 4px rgb(0, 0, 0, .69);
+}
+
+.game-board.x .cell:hover {
+    opacity: 50%;
+    background-color: aliceblue;
 }
