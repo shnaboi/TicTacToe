@@ -16,9 +16,9 @@ gameCells.forEach(cell => {
 function handleClick(e) {
     const gameCell = e.target;
     const playerTurn = xTurn ? X_CLASS : O_CLASS;
-    gameCell.style.backgroundImage = `url(images/${playerTurn}.svg)`;
-    checkWin();
     changeTurn();
+    takeTurn(gameCell, playerTurn)
+    checkWin();
     setBoardHover();
 }
 
@@ -26,10 +26,19 @@ function changeTurn() {
     xTurn = !xTurn;
 }
 
+function takeTurn(gameCell, turn) {
+    gameCell.style.backgroundImage = `url(images/${turn}.svg)`;
+    gameCell.classList.add('taken');
+}
+
 function setBoardHover() {
     gameBoard.classList.remove(X_CLASS);
     gameBoard.classList.remove(O_CLASS);
-    gameBoard.classList.add(X_CLASS);
+    if (xTurn) {
+        gameBoard.classList.add(X_CLASS);
+    } else {
+        gameBoard.classList.add(O_CLASS);
+    }
 }
 
 function checkWin() {

@@ -48,6 +48,7 @@
     background-size: 75%;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 /* MAKE TIC TAC TOE BOARD */
@@ -74,11 +75,31 @@
 
 /* HOVER STYLES */
 
-.cell:hover {
-    box-shadow: inset 0 0 4px 4px rgb(0, 0, 0, .69);
+.taken {
+    cursor: not-allowed;
 }
 
-.game-board.x .cell:hover {
+.taken:hover {
+    opacity: 100%;
+}
+
+/* HOVER DURING TURN */
+
+.game-board.x .cell:not(.taken):hover,
+.game-board.o .cell:not(.taken):hover {
+    box-shadow: inset 0 0 4px 4px rgb(0, 0, 0, .69); 
+}
+
+.game-board.x .cell:not(.taken):hover {
+    background-image: url('images/x.svg');
+    background-size: 75%;
+    background-position: center;
     opacity: 50%;
-    background-color: aliceblue;
+}
+
+.game-board.o .cell:not(.taken):hover {
+    background-image: url('images/o.svg');
+    background-size: 75%;
+    background-position: center;
+    opacity: 50%;
 }
