@@ -22,6 +22,8 @@ function startGame() {
     gameCells.forEach(cell => {
         cell.style.backgroundImage = '';
         cell.style.backgroundColor = 'grey';
+        cell.classList.remove(X_CLASS);
+        cell.classList.remove(O_CLASS);
         cell.addEventListener('click', handleClick, {once: true})
     })
     xTurn = true;
