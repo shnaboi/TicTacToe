@@ -75,29 +75,31 @@
 
 /* HOVER STYLES */
 
-.taken {
+.x,
+.o {
     cursor: not-allowed;
 }
 
-.taken:hover {
+.x:hover,
+.o:hover {
     opacity: 100%;
 }
 
 /* HOVER DURING TURN */
 
-.game-board.x .cell:not(.taken):hover,
-.game-board.o .cell:not(.taken):hover {
-    box-shadow: inset 0 0 4px 4px rgb(0, 0, 0, .69); 
+.game-board.x .cell:not(.x):not(.o):hover,
+.game-board.o .cell:not(.x):not(.o):hover {
+    box-shadow: 0 0 4px 4px rgb(0, 0, 0, .5); 
 }
 
-.game-board.x .cell:not(.taken):hover {
+.game-board.x .cell:not(.x):not(.o):hover {
     background-image: url('images/x.svg');
     background-size: 75%;
     background-position: center;
     opacity: 50%;
 }
 
-.game-board.o .cell:not(.taken):hover {
+.game-board.o .cell:not(.x):not(.o):hover {
     background-image: url('images/o.svg');
     background-size: 75%;
     background-position: center;

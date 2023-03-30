@@ -1,25 +1,41 @@
 const gameBoard = document.querySelector('.game-board');
 const gameCells = document.querySelectorAll('[data-cell]');
-// gameBoard.classList.add(X_CLASS);
-
 const X_CLASS = 'x';
 const O_CLASS = 'o';
+const WIN_ARRAY = [
+    [0,1,2],
+    [0,3,6], 
+    [0,4,8],
+    [1,4,7], 
+    [2,4,6], 
+    [2,5,8], 
+    [3,4,5], 
+    [6,7,8]
+]
 
-let xTurn = true;
-let gameArray = Array.from(gameCells);
+let xTurn;
+let gameArray = Array.from(Array(9).keys());
 
+startGame();
 
-gameCells.forEach(cell => {
-    cell.addEventListener('click', handleClick, {once: true})
-})
+function startGame() {
+    gameCells.forEach(cell => {
+        cell.style.backgroundImage = '';
+        cell.style.backgroundColor = 'grey';
+        cell.addEventListener('click', handleClick, {once: true})
+    })
+    xTurn = true;
+    setBoardHover();
+}
 
 function handleClick(e) {
     const gameCell = e.target;
     const playerTurn = xTurn ? X_CLASS : O_CLASS;
-    changeTurn();
-    takeTurn(gameCell, playerTurn)
+    takeTurn(gameCell, playerTurn);
     checkWin();
+    changeTurn();
     setBoardHover();
+    console.log(gameArray)
 }
 
 function changeTurn() {
@@ -28,7 +44,7 @@ function changeTurn() {
 
 function takeTurn(gameCell, turn) {
     gameCell.style.backgroundImage = `url(images/${turn}.svg)`;
-    gameCell.classList.add('taken');
+    gameCell.classList.add(`${turn}`);
 }
 
 function setBoardHover() {
