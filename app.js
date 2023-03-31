@@ -15,38 +15,54 @@ const WIN_ARRAY = [
 
 let xTurn;
 let gameArray = Array.from(Array(9).keys());
+let gameCellArray = Array.from(gameCells);
 
 startGame();
 
 function startGame() {
-    gameCells.forEach(cell => {
-        cell.style.backgroundImage = '';
-        cell.style.backgroundColor = 'grey';
-        cell.classList.remove(X_CLASS);
-        cell.classList.remove(O_CLASS);
-        cell.addEventListener('click', handleClick, {once: true})
-    })
+    for (let i = 0; i < gameCells.length; i++) {
+        gameCells[i].style.backgroundImage = '';
+        gameCells[i].style.backgroundColor = 'grey';
+        gameCells[i].classList.remove(X_CLASS);
+        gameCells[i].classList.remove(O_CLASS);
+        gameCells[i].addEventListener('click', handleClick)
+    }
+
+    // gameCells.forEach(cell => {
+    //     cellArray.push(cell);
+    //     cell.style.backgroundImage = '';
+    //     cell.style.backgroundColor = 'grey';
+    //     cell.classList.remove(X_CLASS);
+    //     cell.classList.remove(O_CLASS);
+    //     cell.addEventListener('click', handleClick, {once: true})
+    // })
     xTurn = true;
     setBoardHover();
 }
 
-function handleClick(e) {
-    const gameCell = e.target;
+function handleClick(cell) {
+    const gameCell = cell.target;
+    const gameCellId = cell.target.id;
     const playerTurn = xTurn ? X_CLASS : O_CLASS;
-    takeTurn(gameCell, playerTurn);
+    takeTurn(gameCell, playerTurn, gameCellId);
     checkWin();
     changeTurn();
     setBoardHover();
-    console.log(gameArray)
+    console.log(cell.target.id)
+    console.log(gameCells)
 }
 
 function changeTurn() {
     xTurn = !xTurn;
 }
 
-function takeTurn(gameCell, turn) {
-    gameCell.style.backgroundImage = `url(images/${turn}.svg)`;
-    gameCell.classList.add(`${turn}`);
+function takeTurn(gameCell, player, id) {
+    gameCell.style.backgroundImage = `url(images/${player}.svg)`;
+    gameCell.classList.add(`${player}`);
+    gameArray[id] = player;
+    console.log(gameArray);
+
+    console.log(gameCellArray);
 }
 
 function setBoardHover() {
