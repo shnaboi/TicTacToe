@@ -75,8 +75,8 @@
 
 /* HOVER STYLES */
 
-.x,
-.o {
+.x:not(.game-board),
+.o:not(.game-board) {
     cursor: not-allowed;
 }
 

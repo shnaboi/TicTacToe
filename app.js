@@ -25,17 +25,8 @@ function startGame() {
         gameCells[i].style.backgroundColor = 'grey';
         gameCells[i].classList.remove(X_CLASS);
         gameCells[i].classList.remove(O_CLASS);
-        gameCells[i].addEventListener('click', handleClick)
+        gameCells[i].addEventListener('click', handleClick, {once: true});
     }
-
-    // gameCells.forEach(cell => {
-    //     cellArray.push(cell);
-    //     cell.style.backgroundImage = '';
-    //     cell.style.backgroundColor = 'grey';
-    //     cell.classList.remove(X_CLASS);
-    //     cell.classList.remove(O_CLASS);
-    //     cell.addEventListener('click', handleClick, {once: true})
-    // })
     xTurn = true;
     setBoardHover();
 }
@@ -45,7 +36,10 @@ function handleClick(cell) {
     const gameCellId = cell.target.id;
     const playerTurn = xTurn ? X_CLASS : O_CLASS;
     takeTurn(gameCell, playerTurn, gameCellId);
-    checkWin();
+
+    let gameWin = checkWin(gameArray, playerTurn);
+    if (gameWin) gameOver(gameWin);
+
     changeTurn();
     setBoardHover();
     console.log(cell.target.id)
@@ -60,9 +54,37 @@ function takeTurn(gameCell, player, id) {
     gameCell.style.backgroundImage = `url(images/${player}.svg)`;
     gameCell.classList.add(`${player}`);
     gameArray[id] = player;
-    console.log(gameArray);
+    let gameWin = checkWin(gameArray, player);
+    if (gameWin) gameOver(gameWin);
+}
 
-    console.log(gameCellArray);
+function checkWin(board, player) {
+    // playerMoves goes through every element of the board array
+    // a = accumulator array, e is the element, i is index
+    // a is what reduce method is returning as seen in the ternOp
+    // playerMoves will find every play that the player has played
+    let playerMoves = board.reduce((a, e, i) => 
+        (e === player) ? a.concat(i) : a, []);
+
+    let result = null;
+
+    for (let [index, win] of WIN_ARRAY.entries()) {
+        if (win.every(elem => playerMoves.indexOf(elem) > -1)) {
+            result = {index: index, player:player};
+            break;
+        }
+    }
+    return result;
+}
+
+function gameOver(gameWin) {
+    for (let index of WIN_ARRAY[gameWin.index]) {
+        document.getElementById(index).style.backgroundColor = 
+            gameWin.player == X_CLASS ? 'green' : 'red';
+    }
+    for (let i = 0; i < gameCells.length; i++) {
+        gameCells[i].removeEventListener('click', handleClick)
+    }
 }
 
 function setBoardHover() {
@@ -75,12 +97,10 @@ function setBoardHover() {
     }
 }
 
-function checkWin() {
-    return;
-}
-
-// POSSIBLE WIN COMBOS
-// [1,2,3] [1,4,7] [1,5,9] [2,5,8] [3,5,7] [3,6,9] [4,5,6] [7,8,9]
+// for of loop
+// array.reduce
+// array concat
+// Array.every()
 
 
 
