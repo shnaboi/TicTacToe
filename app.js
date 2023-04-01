@@ -14,8 +14,7 @@ const WIN_ARRAY = [
 ]
 
 let xTurn;
-let gameArray = Array.from(Array(9).keys());
-let gameCellArray = Array.from(gameCells);
+let gameArray;
 
 startGame();
 
@@ -26,6 +25,7 @@ function startGame() {
         gameCells[i].classList.remove(X_CLASS);
         gameCells[i].classList.remove(O_CLASS);
         gameCells[i].addEventListener('click', handleClick, {once: true});
+        gameArray = Array.from(Array(9).keys());
     }
     xTurn = true;
     setBoardHover();
