@@ -38,12 +38,15 @@ function handleClick(cell) {
     takeTurn(gameCell, playerTurn, gameCellId);
 
     let gameWin = checkWin(gameArray, playerTurn);
-    if (gameWin) gameOver(gameWin);
+    if (gameWin) {
+        gameOver(gameWin)
+    } else if (checkTie()) {
+        console.log('tie')
+    }
 
     changeTurn();
     setBoardHover();
-    console.log(cell.target.id)
-    console.log(gameCells)
+
 }
 
 function changeTurn() {
@@ -68,6 +71,9 @@ function checkWin(board, player) {
 
     let result = null;
 
+    // for every win in WIN_ARRAY
+    // check if every win is the same as where the players move are
+    // if so, return the win combination and the player then break;
     for (let [index, win] of WIN_ARRAY.entries()) {
         if (win.every(elem => playerMoves.indexOf(elem) > -1)) {
             result = {index: index, player:player};
@@ -85,6 +91,13 @@ function gameOver(gameWin) {
     for (let i = 0; i < gameCells.length; i++) {
         gameCells[i].removeEventListener('click', handleClick)
     }
+}
+
+function checkTie() {
+    return [...gameCells].every(cell => {
+        return cell.classList.contains(X_CLASS) ||
+            cell.classList.contains(O_CLASS);
+    })
 }
 
 function setBoardHover() {
