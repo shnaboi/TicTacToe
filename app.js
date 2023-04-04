@@ -2,6 +2,8 @@ const gameBoard = document.querySelector('.game-board');
 const gameCells = document.querySelectorAll('[data-cell]');
 const X_CLASS = 'x';
 const O_CLASS = 'o';
+const endGameScreen = document.querySelector('.end-game-modal');
+
 const WIN_ARRAY = [
     [0,1,2],
     [0,3,6], 
@@ -29,6 +31,7 @@ function startGame() {
     }
     xTurn = true;
     setBoardHover();
+    endGameScreen.style.display = 'none';
 }
 
 function handleClick(cell) {
@@ -42,6 +45,7 @@ function handleClick(cell) {
         gameOver(gameWin)
     } else if (checkTie()) {
         console.log('tie')
+        endGameScreen.style.display = 'block'
         // UPDATE gameOver() TO REFLECT A TIE, LIKE ADD A TIE, WIN LOSE SCREEN
     }
 
@@ -94,6 +98,7 @@ function gameOver(gameWin) {
     for (let i = 0; i < gameCells.length; i++) {
         gameCells[i].removeEventListener('click', handleClick)
     }
+    endGameScreen.style.display = 'block'
 }
 
 function checkTie() {

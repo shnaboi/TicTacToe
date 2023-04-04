@@ -18,6 +18,7 @@
 .header-div {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -28,6 +29,17 @@ h1 {
     font-weight: 500;
 }
 
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+li {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-weight: 400;
+}
 /* h1::after {
     content: 'Tic-Tac-Toe';
     position: fixed;
@@ -42,6 +54,24 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.end-game-modal{
+    display: block;
+    position: fixed;
+    background-color: rgb(0, 0, 0, .5);
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    padding-top: 30vh;
+    text-align: center;
+    overflow: auto;
+}
+
+.end-game-modal div {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    color: white;
 }
 
 /* GAMEBOARD STYLES */
