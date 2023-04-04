@@ -42,6 +42,7 @@ function handleClick(cell) {
         gameOver(gameWin)
     } else if (checkTie()) {
         console.log('tie')
+        // UPDATE gameOver() TO REFLECT A TIE, LIKE ADD A TIE, WIN LOSE SCREEN
     }
 
     changeTurn();
@@ -57,8 +58,10 @@ function takeTurn(gameCell, player, id) {
     gameCell.style.backgroundImage = `url(images/${player}.svg)`;
     gameCell.classList.add(`${player}`);
     gameArray[id] = player;
-    let gameWin = checkWin(gameArray, player);
-    if (gameWin) gameOver(gameWin);
+
+    // this is redundant code
+    // let gameWin = checkWin(gameArray, player);
+    // if (gameWin) gameOver(gameWin);
 }
 
 function checkWin(board, player) {

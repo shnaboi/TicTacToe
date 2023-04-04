@@ -12,7 +12,28 @@
     height: 100vh;
     width: 100vw;
     background-color: gray;
+    position: absolute;
 }
+
+.header-div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 4rem;
+    font-weight: 500;
+}
+
+/* h1::after {
+    content: 'Tic-Tac-Toe';
+    position: fixed;
+    left: calc(50% - 28%);
+    color: red;
+} */
 
 .game-container {
     border: 2px dashed red;
